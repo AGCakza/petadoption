@@ -3,7 +3,7 @@ import {  } from '@/helpers/types'
 import { FRIENDSHIP_STATUS } from '@/helpers/constants'
 
 export interface IFriendship {
-    between: readonly [string?, string?],
+    between: Array<string | FriendshipDocument>,
     status: FRIENDSHIP_STATUS,
     from: string
 }
@@ -11,6 +11,7 @@ export interface IFriendship {
 export interface FriendshipDocument extends IFriendship, mongoose.Document {
     updatedAt: Date,
     createdAt: Date,
+    friend?: FriendshipDocument
 }
 
 const friendshipSchema = new mongoose.Schema<IFriendship>({

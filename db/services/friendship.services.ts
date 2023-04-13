@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 import { Friendship } from "../models"
 import { IFriendship, FriendshipDocument } from '../models/friendship.model'
 
-export async function addFriend(input: IFriendship): FriendshipDocument {
+export async function addFriend(input: { between: string[], from: string }): FriendshipDocument {
     const check = await Friendship.findOne({ between: { $in: input.between }}) as FriendshipDocument
     if(check) return acceptFriendship(check.id, input.from)
     const res = await Friendship.create(input).catch(err => {

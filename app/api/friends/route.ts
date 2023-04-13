@@ -8,8 +8,9 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(req: NextRequest) {
     const session = await getServerSession(authOptions)
     await dbConnect()
-    let friends = await friendshipServices.getFriends(0, 0, session?.user.id)
-    friends = friends.map(item => ({...item, friend: item.between.find(item => String(item._id) !== session?.user.id)}))
+    let friends = await friendshipServices.getFriends(0, 0, session!.user.id)
+    const friends = await friendshipServices.getFriendRequests(0, 0, session!.user.id)
+    const toSend = friends.map(item => ({...item, friend: item.between.find(item => String(item._id) !== session!.user.id)}))
 
-    return NextResponse.json({ status: 'OK', friends, session })
+    return NextResponse.json({ status: 'OK', friends: toSend, session })
 }

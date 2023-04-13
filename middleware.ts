@@ -20,6 +20,9 @@ export const config = {
         '/profile/:path*',
         '/friends/:path*',
         '/admin/:path*',
-        '/api/friends/:path*'
+        '/api/friends/:path*',
+        '/api/pets/:path*',
+        '/api/playdate/:path*',
+        '/api/profile/:path*'
     ],
 }
