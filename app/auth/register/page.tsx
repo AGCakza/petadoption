@@ -1,6 +1,4 @@
-export default function AuthRegisterPage({
-    childrent
-}) {
+export default function AuthRegisterPage() {
     return(
         <div id='authRegisterPage'>
             Auth Register Page
