@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 
-const MONGODB_URI = process.env.MONGODB_URI
+const MONGODB_URI = process.env.MONGODB_URI || 'localhost'
 
-if (!MONGODB_URI) {
+if (MONGODB_URI === 'localhost') {
     throw new Error("Please define the MONGODB_URI environment variable inside .env.local")
 }
 

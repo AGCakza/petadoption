@@ -19,11 +19,11 @@ type ICONS_LIBRARY = ValueOf<typeof ICONS_LIBRARY>
 
 interface IconType {
     src: ICONS_LIBRARY | string,
-    alt: string,
-    width: number,
-    height: number,
-    className: string,
-    active: boolean
+    alt?: string,
+    width?: number,
+    height?: number,
+    className?: string,
+    active?: boolean
 }
 
 type IconChosenType = Omit<IconType, 'src'>

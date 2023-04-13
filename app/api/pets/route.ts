@@ -9,8 +9,7 @@ export async function GET(req: NextRequest) {
     const session = await getServerSession(authOptions)
     if(session!.user) {
         await dbConnect()
-        const user = await userServices.getUser({ email: session.user.email })
-        const data = await petServices.getPets(0, 0, user.id)
+        const data = await petServices.getPets(0, 0, session!.user.id)
         return NextResponse.json({ status: 'OK', data })
     } else {
         return NextResponse.json({ status: 'Not authorized!' }, { status: 401 })
@@ -22,8 +21,7 @@ export async function POST(_req: NextRequest) {
     if(session!.user) {
         await dbConnect()
         const req = await _req.json()
-        const user = await userServices.getUser({ email: req.email || session.user.email })
-        req.owner = user.id
+        req.owner = session!.user.id
         delete req.email
         const res = await petServices.createPet(req)
         return NextResponse.json({ status: 'OK', data: req })

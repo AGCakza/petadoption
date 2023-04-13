@@ -7,6 +7,8 @@ import { ROUTES } from '@/helpers/constants'
 
 export default function AppBar({
     mini
+}: {
+    mini?: boolean
 }) {
     const pathname = usePathname()
     return <div className={`${styles.root} ${pathname === ROUTES.PLAYDATE ? styles.mini : ''}`}>

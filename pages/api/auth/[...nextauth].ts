@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
+import NextAuth, { NextAuthOptions, User } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -8,6 +8,12 @@ import dbConnect from "@/db/dbConnect"
 import bcrypt from 'bcrypt'
 import clientPromise from "@/db/clientPromise"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import { USER_ROLES } from "@/helpers/constants"
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || ''
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || ''
+const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || ''
+if(!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !NEXTAUTH_SECRET) throw new Error('FILL ENV')
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,24 +23,30 @@ export const authOptions: NextAuthOptions = {
         username: { label: "Username / E-mail", type: "text" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
-        const isEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(credentials?.username)
-        const payload: IUser = isEmail ? { email: credentials?.username } : { username: credentials?.username }
-        await dbConnect()
-        const user = await userServices.getUser(payload)
+      authorize: async (credentials, req) => {
+        try {
+          if(credentials?.username && credentials.password) {
+            const isEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(credentials?.username)
+            const payload = isEmail ? { email: credentials?.username } : { username: credentials?.username }
+            await dbConnect()
+            const user = await userServices.getUser(payload)
 
-        const isPasswordMatched = await bcrypt.compare(credentials?.password, user.password)
-  
-        if(isPasswordMatched) {
-          return user
+            const isPasswordMatched = await bcrypt.compare(credentials?.password, user.password)
+      
+            if(isPasswordMatched) {
+              return user as unknown as User
+            }
+          }
+          return null
+        } catch(err) {
+          return null
         }
-        return null
       }
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      profile(profile, tokens): UserDocument {
+      clientId: GOOGLE_CLIENT_ID,
+      clientSecret: GOOGLE_CLIENT_SECRET,
+      profile(profile, tokens) {
         return {
           id: profile.sub,
           firstName: profile.given_name,
@@ -45,7 +57,7 @@ export const authOptions: NextAuthOptions = {
           avatar: profile.picture,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
-        }
+        } as User
       }
     })
   ],
@@ -71,8 +83,10 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      session.user.id = token.id
-      session.user.role = token.role
+      if(session && session.user) {
+        (session.user as User).id = token.id as string
+        (session.user as User).role = token.role as USER_ROLES
+      }
       
       return session
     }

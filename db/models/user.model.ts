@@ -18,7 +18,7 @@ export interface IUser {
     avatar: string
 }
 
-export interface UserDocument extends IUser, mongoose.Document {
+export interface UserDocument extends IUser, mongoose.Document<mongoose.Types.ObjectId> {
     name: string,
     updatedAt: Date,
     createdAt: Date,
@@ -79,7 +79,7 @@ userSchema.virtual('name').get(function(this: UserDocument) {
     return `${this.firstName} ${this.lastName}`
 })
 
-userSchema.pre('save', async function(this: UserDocument, next: mongoose.HookNextFunction) {
+userSchema.pre('save', async function(this: UserDocument, next: any) {
     if(!this.isModified('password')) return next()
     if(!this.username) this.username = this.email
     const salt = await bcrypt.genSalt(10)
@@ -93,4 +93,4 @@ userSchema.methods.comparePassword = async function(checkPassword: string): Prom
     return await bcrypt.compare(checkPassword, user.password).catch(() => false)
 }
 
-export default mongoose.models && 'User' in mongoose.models ? mongoose.models.User : mongoose.model<UserDocument>('User', userSchema)
+export default mongoose.models && 'User' in mongoose.models ? mongoose.models.User as mongoose.Model<UserDocument> : mongoose.model<UserDocument>('User', userSchema)

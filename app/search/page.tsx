@@ -5,7 +5,7 @@ import api from "@/utils/axios"
 import { useEffect, useState } from "react"
 
 export default function Search() {
-    const [people, setPeople] = useState([]) as UserDocument[]
+    const [people, setPeople] = useState([] as UserDocument[])
 
     const addFriend = async (id: string) => {
         await api.post(`/friends/${id}`)
@@ -19,7 +19,7 @@ export default function Search() {
     }, [])
     return (
         <div>
-            {people.map((item: UserDocument, index) => <div key={index} onClick={() => addFriend(item._id)}>{item.name}</div>)}
+            {people.map((item: UserDocument, index) => <div key={index} onClick={() => addFriend(item.id)}>{item.name}</div>)}
         </div>
     )
 }
