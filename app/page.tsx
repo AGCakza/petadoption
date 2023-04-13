@@ -10,7 +10,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const { data: session } = useSession()
-  console.log(session)
   return (
     <div>
       {session?.user ? <button onClick={() => signOut()}>Log Out</button> : <button onClick={() => signIn()}>Sign In</button>}
