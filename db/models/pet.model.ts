@@ -1,13 +1,8 @@
-import { DOG_BREEDS } from "@/helpers/constants"
+import { DOG_BREEDS, PetType } from "@/helpers/constants"
 import { ValueOf } from "@/helpers/types"
 import moment from "moment"
 import mongoose from "mongoose"
 import { UserDocument } from "./user.model"
-
-const PetType = {
-    DOG: 'dog'
-} as const
-type PetType = ValueOf<typeof PetType>
 
 export interface IPet {
     name: string,

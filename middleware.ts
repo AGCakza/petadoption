@@ -17,6 +17,7 @@ export default withAuth(
 export const config = {
     matcher: [
         '/playdate/:path*',
+        '/profile',
         '/profile/:path*',
         '/friends/:path*',
         '/admin/:path*',

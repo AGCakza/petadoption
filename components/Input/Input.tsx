@@ -1,11 +1,21 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styles from './Input.module.sass'
 import _uniqueId from 'lodash/uniqueId'
 import _debounce from 'lodash/debounce'
 
-const Input = ({
+interface IInput {
+    id: string
+    name: string
+    label: string
+    type: string
+    onChange: ({value: string, name: string}) => void
+    debounce: number
+    value: string
+}
+
+const Input: React.FC<IInput> = ({
     id,
     name,
     label,
@@ -13,19 +23,11 @@ const Input = ({
     onChange,
     debounce = 0,
     value
-} : {
-    id: string,
-    name: string,
-    label: string,
-    type: string,
-    onChange: Function,
-    debounce: number,
-    value: string
 }) => {
     const [_type, setType] = useState(type)
     const [_id] = useState(id || _uniqueId(`input-${type}-`))
 
-    const handleChange = useMemo(() => _debounce(e => {
+    const handleChange = useMemo(() => _debounce((e: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         onChange({value, name})
     }, debounce), [debounce, onChange])

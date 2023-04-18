@@ -1,18 +1,35 @@
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
-import { getServerSession } from "next-auth"
+'use client'
+
+import styles from './Profile.module.sass'
+import { PetsBlock, UserThumb } from "@/components"
+import { useAppData, usePetsData } from "@/hooks"
 import Link from "next/link"
+import { useEffect } from 'react'
 
-async function getProfile() {
-    const session = await getServerSession(authOptions)
-    return session
-}
+export default function ProfilePage() {
+    const { user } = useAppData()
+    const { pets, getPets } = usePetsData()
 
-export default async function ProfilePage() {
-    const session = await getProfile()
+    useEffect(() => {
+        getPets(false, {
+            page: 1,
+            perPage: 5
+        })
+    }, [])
+
+    useEffect(() => {
+        console.log('pets: ', pets)
+    }, [pets])
 
     return (
-        <div>
-            Hello, {JSON.stringify(session)}
+        <div className={styles.root}>
+            <UserThumb user={user} style='big' />
+            <div className={styles.list}>
+                <Link className={styles.item} href={'/'}>My Info</Link>
+                <PetsBlock pets={pets || []} showEdit />
+                <Link className={styles.item} href={'/'}>About Us</Link>
+                <Link className={styles.item} href={'/'}>Settings</Link>
+            </div>
         </div>
     )
 }

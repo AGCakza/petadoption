@@ -4,24 +4,24 @@ import { PositionType } from '@/helpers/types'
 import { USER_ROLES } from '@/helpers/constants'
 
 export interface IUser {
-    firstName: string,
-    lastName: string,
-    email: string,
-    role: USER_ROLES,
-    username: string,
-    password: string,
-    birthDate: Date,
-    country: string,
-    city: string,
-    position: PositionType,
-    rating: number,
+    firstName: string
+    lastName: string
+    email: string
+    role: USER_ROLES
+    username: string
+    password: string
+    birthDate: Date
+    country: string
+    city: string
+    position: PositionType
+    rating: number
     avatar: string
 }
 
 export interface UserDocument extends IUser, mongoose.Document<mongoose.Types.ObjectId> {
-    name: string,
-    updatedAt: Date,
-    createdAt: Date,
+    name: string
+    updatedAt: Date
+    createdAt: Date
     comparePassword(checkPassword: string): Promise<boolean>
 }
 

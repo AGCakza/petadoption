@@ -15,7 +15,7 @@ export default function AppBar({
         <div className={styles.menu}>
             <Link href={ROUTES.HOME}><Icon.Dashboard active={pathname === ROUTES.HOME} /></Link>
             <Link href={ROUTES.SEARCH}><Icon.Search active={pathname === ROUTES.SEARCH} /></Link>
-            <Link href={ROUTES.PLAYDATE}><Icon.Paw className={`${styles.main} ${pathname === ROUTES.PLAYDATE ? styles.active : ''}`} active={pathname !== ROUTES.PLAYDATE} width={48} height={48} /></Link>
+            <Link href={ROUTES.PLAYDATE} className={`${styles.main} ${pathname === ROUTES.PLAYDATE ? styles.active : ''}`}><Icon.Paw active={pathname !== ROUTES.PLAYDATE} size={48} /></Link>
             <Link href={ROUTES.FRIENDS}><Icon.Friends active={pathname === ROUTES.FRIENDS} /></Link>
             <Link href={ROUTES.PROFILE}><Icon.Profile active={pathname === ROUTES.PROFILE} /></Link>
         </div>
