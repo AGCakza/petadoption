@@ -15,6 +15,7 @@ export async function POST(_req: NextRequest, { params }: { params: { id: string
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+    await dbConnect()
     const removing = await friendshipServices.removeFriendship(params.id)
     
     return NextResponse.json({ status: 'OK' })

@@ -21,7 +21,7 @@ export type PetsMeta = {
 export interface IPetsData {
     pets: FEPet[]
     pet: null | FEPet
-    meta: PetsMeta
+    meta?: PetsMeta
 }
 
 export interface FEUser {
@@ -47,7 +47,7 @@ export interface FEPet {
     _id: string
     name: string,
     type: PetType,
-    breed: DOG_BREEDS,
+    breed: string,
     owner: string | FEUser,
     birthDate: Date,
     avatar: string

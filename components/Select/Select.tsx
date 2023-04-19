@@ -4,14 +4,14 @@ import _uniqueId from 'lodash/uniqueId'
 import _debounce from 'lodash/debounce'
 
 interface ISelectProps {
-    id: string
-    name: string
-    label: string
-    onChange: ({value: string, name: string}) => void
-    debounce: number
-    value: string
-    children: React.ReactNode,
-    defaultValue: string
+    id?: string
+    name?: string
+    label?: string
+    onChange?: ({value, name}: {value: string, name: string}) => void
+    debounce?: number
+    value?: string
+    children?: React.ReactNode,
+    defaultValue?: string
 }
 
 interface ISelect extends React.FC<ISelectProps> {
@@ -22,7 +22,7 @@ const Select: ISelect = ({
     id,
     name,
     label,
-    onChange,
+    onChange = () => {},
     debounce = 0,
     value,
     children,
@@ -47,12 +47,12 @@ const Select: ISelect = ({
 }
 
 interface ISelectItemProps {
-    id: string | undefined | null
-    value: string
-    children: React.ReactNode
+    id?: string | undefined
+    value?: string
+    children?: React.ReactNode
 }
 
-const Item: React.FC<ISelectItemProps> = ({
+const Item: ISelect['Item'] = ({
     value,
     children,
     id

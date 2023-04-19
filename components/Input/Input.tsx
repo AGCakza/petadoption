@@ -6,13 +6,13 @@ import _uniqueId from 'lodash/uniqueId'
 import _debounce from 'lodash/debounce'
 
 interface IInput {
-    id: string
-    name: string
-    label: string
-    type: string
-    onChange: ({value: string, name: string}) => void
-    debounce: number
-    value: string
+    id?: string
+    name?: string
+    label?: string
+    type?: string
+    onChange?: ({value, name} : {value: string, name: string}) => void
+    debounce?: number
+    value?: string
 }
 
 const Input: React.FC<IInput> = ({
@@ -20,7 +20,7 @@ const Input: React.FC<IInput> = ({
     name,
     label,
     type = 'text',
-    onChange,
+    onChange = () => {},
     debounce = 0,
     value
 }) => {

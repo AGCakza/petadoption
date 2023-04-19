@@ -8,9 +8,9 @@ export default function NavButton({
     position = 'left',
     icon = 'Back'
 }: {
-    to: ROUTES | string
-    position: 'left' | 'right'
-    icon: 'Back' | 'Add'
+    to: Omit<ROUTES, 'PROFILE_PETS_EDIT'> | string
+    position?: 'left' | 'right'
+    icon?: 'Back' | 'Add'
 }) {
 
     return (

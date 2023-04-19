@@ -3,7 +3,7 @@ import styles from './PetThumb.module.sass'
 import { FEPet } from '@/helpers/types'
 
 interface IPetThumb {
-    style: 'mini' | 'nobackground' | 'default' | 'big'
+    style?: 'mini' | 'nobackground' | 'default' | 'big'
     pet: FEPet
 }
 

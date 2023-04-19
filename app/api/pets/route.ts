@@ -4,6 +4,7 @@ import { petServices, userServices } from "@/db/services"
 import mongoose from "mongoose"
 import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
+import { IPet } from "@/db/models/pet.model"
 const fs = require('fs')
 
 
@@ -28,16 +29,16 @@ export async function POST(_req: NextRequest) {
     const session = await getServerSession(authOptions)
     if(session!.user) {
         await dbConnect()
-        const body = {}
+        const body: any = {}
         const req = await _req.formData()
-        for (var pair of req.entries()) {
+        for (var pair of Array.from(req.entries())) {
             body[pair[0]] = pair[1]
         }
         if(body.avatar) {
             const name = Date.now() + '.' + body.avatar.type.split('/')[1]
             const buffer = Buffer.from(await body.avatar.arrayBuffer())
             body.avatar = 'uploads/' + name
-            fs.writeFile(body.avatar, buffer, (err) => console.log(err))
+            fs.writeFile(body.avatar, buffer, (err: any) => console.log(err))
         }
         console.log(body)
 

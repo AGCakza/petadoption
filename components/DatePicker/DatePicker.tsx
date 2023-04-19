@@ -4,7 +4,7 @@ import _DatePicker from 'react-datepicker'
 
 interface IDatePickerProps {
     value: Date
-    onChange: (date: Date) => void
+    onChange: (date: Date | null) => void
 }
 
 const DatePicker: React.FC<IDatePickerProps> = ({

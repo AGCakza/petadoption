@@ -23,8 +23,9 @@ const ROUTES = {
     FRIENDS: '/friends',
     PROFILE_PETS: '/profile/pets',
     PROFILE_PETS_ADD: '/profile/pets/add',
-    PROFILE_PETS_EDIT: id => '/profile/pets/' + id
+    PROFILE_PETS_EDIT: (id: string): string => '/profile/pets/' + id
 } as const
+type ROUTES = ValueOf<typeof ROUTES>
 
 const FRIENDSHIP_STATUS = {
     PENDING: "pending", 

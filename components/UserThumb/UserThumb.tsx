@@ -4,7 +4,7 @@ import { FEUser } from '@/helpers/types'
 
 interface IUserThumb {
     style: 'mini' | 'nobackground' | 'default' | 'big'
-    user: FEUser
+    user: FEUser | null
 }
 
 const UserThumb: React.FC<IUserThumb> = ({

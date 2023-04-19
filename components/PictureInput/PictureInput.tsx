@@ -3,11 +3,11 @@ import styles from './PictureInput.module.sass'
 import _uniqueId from 'lodash/uniqueId'
 
 interface IPictureInputProps {
-    onChange: (avatar: Blob | MediaSource | string | null) => void
-    defaultImage: React.ReactNode
-    label: string
-    id: string
-    name: string
+    onChange: (avatar: Blob | string | null) => void
+    defaultImage?: React.ReactNode
+    label?: string
+    id?: string
+    name?: string
 }
 
 const PictureInput: React.FC<IPictureInputProps> = ({
@@ -18,7 +18,7 @@ const PictureInput: React.FC<IPictureInputProps> = ({
     name
 }) => {
     const [_id, setId] = useState(id || _uniqueId('file-'))
-    const [showImg, setShowImg] = useState(null)
+    const [showImg, setShowImg] = useState(null as string | null)
     const [active, setActive] = useState(false)
 
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -31,13 +31,14 @@ const PictureInput: React.FC<IPictureInputProps> = ({
     }
     const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault()
-        if(e.dataTransfer.files[0]) {
+        if(e?.dataTransfer?.files && e.dataTransfer.files[0]) {
             const file = e.dataTransfer.files[0]
             console.log(file.type)
         }
     }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files[0]) {
+        e.target.files
+        if(e?.target?.files && e.target.files[0]) {
             setShowImg(URL.createObjectURL(e.target.files[0]))
             onChange(e.target.files[0])
             e.target.value = ''

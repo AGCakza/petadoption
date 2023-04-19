@@ -11,7 +11,10 @@ const ProfilePets = () => {
 
     useEffect(() => {
         (async () => {
-            await getPets(!!!pets.length)
+            await getPets(!!!pets.length, {
+                page: 1,
+                perPage: 5
+            })
         })
     }, [])
 

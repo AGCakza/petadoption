@@ -10,8 +10,8 @@ import { SessionProvider, useSession } from 'next-auth/react'
 import { Dispatch, SetStateAction, createContext, useState } from 'react'
 import { IAppData, IPetsData } from '@/helpers/types'
 
-export const AppDataContext = createContext({appData: {}, setAppData: () => {}} as { appData: IAppData, setAppData: Dispatch<SetStateAction<IAppData>> })
-export const PetsDataContext = createContext({petsData: {}, setPetsData: () => {}} as { petsData: IPetsData, setPetsData: Dispatch<SetStateAction<IPetsData>> })
+export const AppDataContext = createContext({appData: { user: null }, setAppData: () => {}} as { appData: IAppData, setAppData: Dispatch<SetStateAction<IAppData>> })
+export const PetsDataContext = createContext({petsData: { pets: [], pet: null }, setPetsData: () => {}} as { petsData: IPetsData, setPetsData: Dispatch<SetStateAction<IPetsData>> })
 
 export default function Root({
   children,

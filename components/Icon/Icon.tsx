@@ -26,11 +26,12 @@ const ICONS_LIBRARY = {
     SEARCH_ACTIVE: '/icons/search-active.svg',
     BACK: '/icons/back.svg',
     BACK_ACTIVE: '/icons/back-active.svg',
-    ADD: '/icons/add.svg'
+    ADD: '/icons/add.svg',
+    ADD_ACTIVE: '/icons/add.svg'
 } as const
 type ICONS_LIBRARY = ValueOf<typeof ICONS_LIBRARY>
 
-interface IconType extends Image {
+interface IconType {
     src: ICONS_LIBRARY | string,
     alt?: string,
     width?: number,
@@ -39,7 +40,7 @@ interface IconType extends Image {
     active?: boolean
 }
 
-type IconChosenType = Omit<IconType, 'src'> & { size: number }
+type IconChosenType = Omit<IconType, 'src'> & { size?: number }
 
 function IconComponent({
     src,
@@ -68,8 +69,8 @@ const Profile: IIcon['Profile'] = (props) => <IconComponent src={ICONS_LIBRARY[`
 const Friends: IIcon['Friends'] = (props) => <IconComponent src={ICONS_LIBRARY[`FRIENDS${props.active ? '_ACTIVE': ''}`]} width={(props.size || 32) * 1} height={(props.size || 32) * 1} {...props} />
 const Dashboard: IIcon['Dashboard'] = (props) => <IconComponent src={ICONS_LIBRARY[`DASHBOARD${props.active ? '_ACTIVE': ''}`]} width={(props.size || 32) * 1} height={(props.size || 32) * 1} {...props} />
 const Search: IIcon['Search'] = (props) => <IconComponent src={ICONS_LIBRARY[`SEARCH${props.active ? '_ACTIVE': ''}`]} width={(props.size || 32) * 1} height={(props.size || 32) * 1} {...props} />
-const Back: IIcon['Back'] = (props) => <IconComponent src={ICONS_LIBRARY[`BACK${props.active ? '_ACTIVE': ''}`]} width={(props.size || 24) * 1} height={(props.size || 24) * 1.5} fill {...props} />
-const Add: IIcon['Add'] = (props) => <IconComponent src={ICONS_LIBRARY[`ADD${props.active ? '_ACTIVE': ''}`]} width={(props.size || 24) * 1} height={(props.size || 24) * 1} fill {...props} />
+const Back: IIcon['Back'] = (props) => <IconComponent src={ICONS_LIBRARY[`BACK${props.active ? '_ACTIVE': ''}`]} width={(props.size || 24) * 1} height={(props.size || 24) * 1.5} {...props} />
+const Add: IIcon['Add'] = (props) => <IconComponent src={ICONS_LIBRARY[`ADD${props.active ? '_ACTIVE': ''}`]} width={(props.size || 24) * 1} height={(props.size || 24) * 1} {...props} />
 
 Icon.Paw = Paw
 Icon.Profile = Profile

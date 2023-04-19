@@ -3,11 +3,15 @@
 import { PetForm } from '@/components'
 import styles from './ProfilePetsAdd.module.sass'
 
-const ProfilePetsAdd: React.FC<> = () => {
+interface IProfilePetsAdd {
+
+}
+
+const ProfilePetsAdd: React.FC<IProfilePetsAdd> = () => {
 
 
     return (
-        <div classNmae={styles.root}>
+        <div className={styles.root}>
             <PetForm />
         </div>
     )

@@ -14,7 +14,7 @@ export default function usePetsData() {
         perPage = 5,
         owner = userId,
         query = null
-    }: Omit<PetsMeta, 'totalPages'>) => {
+    }: Partial<PetsMeta>) => {
         console.log(userId)
         try {
             if(toggleLoading) setPetsData(prev => ({...prev, isLoading: true}))
