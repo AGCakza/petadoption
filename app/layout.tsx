@@ -9,7 +9,18 @@ import { Session } from 'next-auth'
 import { SessionProvider, useSession } from 'next-auth/react'
 import { AppDataContextProvider } from '@/context/AppDataContext'
 import { PetsDataContextProvider } from '@/context/PetsDataContext'
-import Head from 'next/head'
+
+export const metadata = {
+  title: 'Petty',
+  description: 'Welcome to Petty',
+  "mobile-web-app-capable": "yes",
+  "apple-mobile-web-app-capable": "yes",
+  "apple-mobile-web-app-capable": "yes",
+  "mobile-web-app-capable": "yes",
+  "apple-mobile-web-app-status-bar-style": "#FFE5CA",
+  "theme-color": "#FFE5CA",
+  "apple-mobile-web-app-title": "Petty"
+}
 
 export default function Root({
   children,
@@ -42,15 +53,6 @@ const RootLayout = ({
 
   return (
     <html lang="en">
-      <Head>
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#FFE5CA" />
-        <meta name="theme-color" content="#FFE5CA" />
-        <meta name="apple-mobile-web-app-title" content="Petty" />
-      </Head>
       <body>
         <div className={styles.root}>
           {children}
