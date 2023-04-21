@@ -20,10 +20,15 @@
 
 
 :root
-  --appbar-background: #1D1F24
-  --appbar-font: #676D75
-  --appbar-font-active: #fff
-  --foreground-rgb:255, 255, 255
+  --appbar-background: #FFE5CA
+  --appbar-font-active: #594545
+  --foreground-bg: #FFF3E2
+  --font-color: #37393A
+  --font-color-white: #F9F9F9
+  --error-light: #FA9884
+  --error-dark: #E74646
+  --block-bg: #FFE5CA
+  --block-dark: #594545
   --background-start-rgb:0, 0, 0
   --background-end-rgb:0, 0, 0
   --primary-glow:radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0))
@@ -67,8 +72,9 @@ html
 body
   max-width: 100vw
   overflow-x: hidden
-  color: rgb(var(--foreground-rgb))
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))
+  background: var(--foreground-bg)
+  color: var(--font-color)
+  // background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))
 
 a
   color: inherit

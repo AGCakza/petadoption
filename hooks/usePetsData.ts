@@ -1,12 +1,12 @@
-import { PetsDataContext } from "@/app/layout"
 import { mapObjectToQuery } from "@/helpers/funcs"
 import { PetsMeta } from "@/helpers/types"
 import api from "@/utils/axios"
-import { useCallback, useContext, useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import useAppData from "./useAppData"
+import { usePetsDataContext } from "@/context/PetsDataContext"
 
 export default function usePetsData() {
-    const { petsData, setPetsData } = useContext(PetsDataContext)
+    const { petsData, setPetsData } = usePetsDataContext()
     const { userId } = useAppData()
 
     const getPets = useCallback(async (toggleLoading: boolean | null, {

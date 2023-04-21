@@ -45,10 +45,11 @@ export interface FEUser {
 
 export interface FEPet {
     _id: string
-    name: string,
-    type: PetType,
-    breed: string,
-    owner: string | FEUser,
-    birthDate: Date,
+    name: string
+    type: PetType
+    breed: string
+    owner: string | FEUser
+    birthDate: Date
     avatar: string
+    age: number
 }

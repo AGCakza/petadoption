@@ -22,9 +22,15 @@
         bottom: 0
         left: 0
         right: 0
+        & > a
+            border-radius: 5px
+            padding: 10px
+            transition: background 0.2s ease
+            &.active
+                background: var(--appbar-font-active)
         .main
-            background: var(--appbar-font)
-            border: 10px solid rgb(var(--background-start-rgb))
+            background: var(--font-color)
+            border: 10px solid var(--foreground-bg)
             transform: translateY(-45px)
             width: 90px
             height: 90px

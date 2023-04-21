@@ -20,9 +20,9 @@ const PetThumb: React.FC<IPetThumb> = ({
             {style !== 'mini' && <div className={styles.info}>
                 <p className={styles.name}>{pet.name}</p>
                 <div>
-                    <p>Age months</p>
+                    <p>{pet.age} months</p>
                     <div className={styles.divider} />
-                    <p>Type</p>
+                    <p>{pet.type}</p>
                 </div>
             </div>}
         </div>

@@ -1,11 +1,11 @@
-import { AppDataContext } from "@/app/layout"
+import { useAppDataContext } from "@/context/AppDataContext"
 import api from "@/utils/axios"
 import { useSession } from "next-auth/react"
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 export default function useAppData() {
     const { data: session, status } = useSession()
-    const { appData, setAppData } = useContext(AppDataContext)
+    const { appData, setAppData } = useAppDataContext()
     const [userId, setUserId] = useState(session?.user.id)
 
     const getUserInfo = useCallback(async () => {

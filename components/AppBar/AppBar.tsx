@@ -13,11 +13,11 @@ export default function AppBar({
     const pathname = usePathname()
     return <div className={`${styles.root} ${pathname === ROUTES.PLAYDATE ? styles.mini : ''}`}>
         <div className={styles.menu}>
-            <Link href={ROUTES.HOME}><Icon.Dashboard active={pathname === ROUTES.HOME} /></Link>
-            <Link href={ROUTES.SEARCH}><Icon.Search active={pathname === ROUTES.SEARCH} /></Link>
-            <Link href={ROUTES.PLAYDATE} className={`${styles.main} ${pathname === ROUTES.PLAYDATE ? styles.active : ''}`}><Icon.Paw active={pathname !== ROUTES.PLAYDATE} size={48} /></Link>
-            <Link href={ROUTES.FRIENDS}><Icon.Friends active={pathname === ROUTES.FRIENDS} /></Link>
-            <Link href={ROUTES.PROFILE}><Icon.Profile active={pathname === ROUTES.PROFILE} /></Link>
+            <Link href={ROUTES.HOME} className={`${pathname === ROUTES.HOME ? styles.active : ''}`}><Icon.Dashboard active={pathname === ROUTES.HOME} /></Link>
+            <Link href={ROUTES.SEARCH} className={`${pathname === ROUTES.SEARCH ? styles.active : ''}`}><Icon.Search active={pathname === ROUTES.SEARCH} /></Link>
+            <Link href={ROUTES.PLAYDATE} className={`${styles.main} ${pathname === ROUTES.PLAYDATE ? styles.active : ''}`}><Icon.Paw size={48} /></Link>
+            <Link href={ROUTES.FRIENDS} className={`${pathname === ROUTES.FRIENDS ? styles.active : ''}`}><Icon.Friends active={pathname === ROUTES.FRIENDS} /></Link>
+            <Link href={ROUTES.PROFILE} className={`${pathname === ROUTES.PROFILE ? styles.active : ''}`}><Icon.Profile active={pathname === ROUTES.PROFILE} /></Link>
         </div>
     </div>
 }

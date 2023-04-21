@@ -1,17 +1,17 @@
 .root
     width: 100%
-    padding: 10px 20px
     font-size: 20px
-    border-radius: 10px
-    background: #212121
     .header
         display: flex
         align-items: center
         justify-content: space-between
+        background: var(--block-dark)
+        color: var(--font-color-white)
+        padding: 16px
+        border-radius: 16px
         .title
-            color: #757575
             strong
-                color: #FAFAFA
+                opacity: 0.5
                 font-weight: 400
         a
             font-size: 16px
@@ -19,6 +19,11 @@
             display: block
             text-decoration: underline
     .content
+        overflow-x: auto
+        background: var(--block-bg)
+        border-radius: 0 0 16px 16px
+        margin: 0 16px
+        padding: 16px
         display: flex
         align-items: center
         gap: 8px

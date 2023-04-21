@@ -1,11 +1,13 @@
 .root
-    background: #2C3E50
+    background: var(--block-dark)
     padding: 30px
     border-radius: 20px
-    color: #ECEFF1
+    color: var(--font-color-white)
     display: flex
     gap: 10px
     .avatar
+        min-width: 38px
+        min-height: 38px
         width: 38px
         height: 38px
         border-radius: 100%
@@ -14,8 +16,8 @@
         align-items: center
         justify-content: center
         img
-            width: 110%
-            height: 110%
+            width: 100%
+            height: 100%
             object-fit: cover
     &.big
         padding: 15px

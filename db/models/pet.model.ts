@@ -3,6 +3,7 @@ import { ValueOf } from "@/helpers/types"
 import moment from "moment"
 import mongoose from "mongoose"
 import { UserDocument } from "./user.model"
+import mongooseLeanVirtuals from 'mongoose-lean-virtuals'
 
 export interface IPet {
     name: string,
@@ -31,5 +32,7 @@ const petSchema = new mongoose.Schema<IPet>({
 petSchema.virtual('age').get(function(this: IPet) {
     return moment().diff(moment(this.birthDate), 'months')
 })
+
+petSchema.plugin(mongooseLeanVirtuals)
 
 export default mongoose.models && 'Pet' in mongoose.models ? mongoose.models.Pet as mongoose.Model<PetDocument> : mongoose.model<PetDocument>('Pet', petSchema)

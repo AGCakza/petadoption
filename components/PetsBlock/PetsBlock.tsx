@@ -16,7 +16,7 @@ const PetsBlock: React.FC<IPetsBlock> = ({
     return (
         <div className={styles.root}>
             <div className={styles.header}>
-                <p className={styles.title}><strong>Pet{pets.length !== 1 && 's'}</strong>{pets.length > 1 && ' ' + pets.length}</p>
+                <p className={styles.title}>Pet{pets.length !== 1 && 's'}<strong>{pets.length > 1 ? ' ' + pets.length : ''}</strong></p>
                 {showEdit && <Link href={ROUTES.PROFILE_PETS}>Edit</Link>}
             </div>
             <div className={styles.content}>

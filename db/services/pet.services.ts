@@ -11,7 +11,7 @@ export async function createPet(input: IPet): Promise<PetDocument> {
 export async function getPets(page: number, perPage: number, owner: string): Promise<PetDocument[]> {
     if(!page) page = 1
     if(!perPage) perPage = 10
-    const arr = await Pet.find({...(owner && { owner })}).skip((page - 1) * perPage).limit(perPage)
+    const arr = await Pet.find({...(owner && { owner })}).skip((page - 1) * perPage).limit(perPage).lean({ virtuals: true })
     return arr as PetDocument[]
 }
 
