@@ -48,6 +48,7 @@ const RootLayout = ({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#FFE5CA" />
+        <meta name="theme-color" content="#FFE5CA" />
         <meta name="apple-mobile-web-app-title" content="Petty" />
       </Head>
       <body>
