@@ -9,7 +9,6 @@ import { Session } from 'next-auth'
 import { SessionProvider, useSession } from 'next-auth/react'
 import { AppDataContextProvider } from '@/context/AppDataContext'
 import { PetsDataContextProvider } from '@/context/PetsDataContext'
-import Head from 'next/head'
 
 export default function Root({
   children,
@@ -42,17 +41,14 @@ const RootLayout = ({
 
   return (
     <html lang="en">
-      <Head>
-        <title>Petty</title>
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#FFE5CA" />
-        <meta name="theme-color" content="#FFE5CA" />
-        <meta name="apple-mobile-web-app-title" content="Petty" />
-      </Head>
       <body>
+        <div style={{
+          position: 'absolute',
+          top: -100,
+          width: '100%',
+          textAlign: 'center',
+          zIndex: 100
+        }}>Loading...</div>
         <div className={styles.root}>
           {children}
         </div>

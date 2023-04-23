@@ -1,5 +1,9 @@
+const nextPWA = require('next-pwa')({
+  dest: 'public'
+})
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = nextPWA({
 
   images: {
     remotePatterns: [
@@ -21,6 +25,12 @@ const nextConfig = {
         port: '3000',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'http',
+        hostname: '192.168.1.101',
+        port: '3000',
+        pathname: '/uploads/**',
+      },
     ],
   },
   experimental: {
@@ -30,6 +40,6 @@ const nextConfig = {
     config.experiments = { ...config.experiments, topLevelAwait: true }
     return config
   }
-}
+})
 
 module.exports = nextConfig
