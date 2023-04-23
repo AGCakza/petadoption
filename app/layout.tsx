@@ -42,13 +42,6 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body>
-        <div style={{
-          position: 'absolute',
-          top: -100,
-          width: '100%',
-          textAlign: 'center',
-          zIndex: 100
-        }}>Loading...</div>
         <div className={styles.root}>
           {children}
         </div>
